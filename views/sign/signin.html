@@ -16,6 +16,8 @@
 			</div>
 			<% } %>
 			<form id='signin_form' class='form-horizontal' action='/signin' method='post'>
+                <div class='control-group'>
+                </div>
 				<div class='control-group'>
 					<label class='control-label' for='name'>用户名</label>
 					<div class='controls'>
@@ -31,13 +33,14 @@
 				<input type='hidden' name='_csrf' value='<%= csrf %>' />
 				<div class='form-actions'>
 					<input type='submit' class='btn' value='登录' />
+                    <a href='/search_pass'>忘记密码了?</a>
           <!--<a href="/auth/github" class='btn btn-info' >Sign in with Github</a>-->
 				</div>
-				<div class='control-group'>
-					<div class='controls'>
-					<a href='/search_pass'>忘记密码了?</a>
-					</div>
-				</div>
+				<!--<div class='control-group'>-->
+					<!--<div class='controls'>-->
+					<!--<a href='/search_pass'>忘记密码了?</a>-->
+					<!--</div>-->
+				<!--</div>-->
 			</form>
 		</div>
 	</div>
