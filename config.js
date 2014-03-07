@@ -33,7 +33,7 @@ var config = {
   db: 'mongodb://tianxiawuai:1740355@127.0.0.1/tianxiawuai',
   session_secret: 'node_club',
   auth_cookie_name: 'node_club',
-  port: 80,
+  port: 8080,
 
   // 话题列表显示的话题数量
   list_topic_count: 20,

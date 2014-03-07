@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="25f1e7ab-ed65-41c8-b793-d08f28d469e0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.js" afterPath="$PROJECT_DIR$/config.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="tianxiawuai.iws" />
@@ -29,7 +30,7 @@
       <file leaf-file-name="config.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="22" selection-start="591" selection-end="591" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1800">
+            <state line="22" column="34" selection-start="567" selection-end="567" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="1800">
               <folding />
             </state>
           </provider>
@@ -38,7 +39,7 @@
       <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="26" selection-start="76" selection-end="76" vertical-scroll-proportion="0.116883114" vertical-offset="0" max-vertical-offset="385">
+            <state line="4" column="0" selection-start="77" selection-end="77" vertical-scroll-proportion="0.15584415" vertical-offset="0" max-vertical-offset="385">
               <folding />
             </state>
           </provider>
@@ -190,7 +191,11 @@
       <created>1394206623408</created>
       <updated>1394206623408</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="修改帮助文档">
+      <created>1394206716618</created>
+      <updated>1394206716618</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -233,14 +238,14 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="22" selection-start="591" selection-end="591" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1800">
+        <state line="22" column="34" selection-start="567" selection-end="567" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="1800">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="26" selection-start="76" selection-end="76" vertical-scroll-proportion="0.116883114" vertical-offset="0" max-vertical-offset="385">
+        <state line="4" column="0" selection-start="77" selection-end="77" vertical-scroll-proportion="0.15584415" vertical-offset="0" max-vertical-offset="385">
           <folding />
         </state>
       </provider>
