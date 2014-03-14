@@ -30,6 +30,7 @@ var config = {
 
   upload_dir: path.join(__dirname, 'public', 'user_data', 'images'),
 //mongodb://user:pass@localhost:port/database
+  //db: 'mongodb://tianxiawuai:1740355@107.170.233.60:27017/tianxiawuai',
   db: 'mongodb://tianxiawuai:1740355@127.0.0.1/tianxiawuai',
   session_secret: 'node_club',
   auth_cookie_name: 'node_club',
