@@ -89,7 +89,7 @@ var config = {
     port: 25,
     auth: {
       user: 'tianxiawuaicn@126.com',
-      pass: '1740355'
+      pass: 'Wyq1740355'
     }
   },
 
