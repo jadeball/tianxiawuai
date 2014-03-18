@@ -30,8 +30,8 @@ exports.signup = function (req, res, next) {
     return;
   }
 
-  if (name.length < 5) {
-    res.render('sign/signup', {error: '用户名至少需要5个字符。', name: name, email: email});
+  if (name.length < 4) {
+    res.render('sign/signup', {error: '用户名至少需要4个字符。', name: name, email: email});
     return;
   }
 

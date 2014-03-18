@@ -36,12 +36,15 @@ exports.index = function (req, res, next) {
       if (!user.active && req.session.user && req.session.user.is_admin) {
         token = utility.md5(user.email + config.session_secret);
       }
-      res.render('user/index', {
+
+
+
+      res.render(!!user.level && user.level == 'expert'?'user/expert':'user/index', {
         user: user,
         recent_topics: recent_topics,
         recent_replies: recent_replies,
         relation: relation,
-        token: token,
+        token: token
       });
     };
 
