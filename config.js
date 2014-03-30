@@ -34,7 +34,7 @@ var config = {
   db: 'mongodb://tianxiawuai:1740355@127.0.0.1/tianxiawuai',
   session_secret: 'node_club',
   auth_cookie_name: 'node_club',
-  port: 80,
+  port: 8080,
 
   // 话题列表显示的话题数量
   list_topic_count: 20,
@@ -94,7 +94,8 @@ var config = {
   },
 
   //weibo app key
-  weibo_key: 10000000,
+  weibo_key: 1499072991,
+  qq_key:101045314,  //25b46df2c5e64fad6c27f2a55b441881
 
   // admin 可删除话题，编辑标签，设某人为达人
   admins: { admin: true },
