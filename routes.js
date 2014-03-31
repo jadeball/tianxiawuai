@@ -25,8 +25,10 @@ var status = require('./controllers/status');
 var github = require('./controllers/github');
 var passport = require('passport');
 var configMiddleware = require('./middlewares/conf');
+var authMiddleware = require('./middlewares/auth');
 var config = require('./config');
-
+var Sina = require('./controllers/sina');
+var sina = new Sina(config.sina);
 
 module.exports = function (app) {
   // home page
@@ -134,4 +136,19 @@ module.exports = function (app) {
     github.callback);
   app.get('/auth/github/new', github.new);
   app.post('/auth/github/create', github.create);
+
+  //sina oauth
+  app.get('/auth/sina',function(req, res, next){
+
+      res.redirect(sina.oauth.authorize({
+          client_id: config.sina.client_id,
+          redirect_uri: config.sina.redirect_uri,
+          response_type: 'code'
+      }));
+
+  });
+  app.get('/auth/sina/callback',authMiddleware.sinacallback);
+  app.get('/auth/sina/new', authMiddleware.sinanew);
+  app.post('/auth/sina/create', authMiddleware.sinacreate);
+
 };

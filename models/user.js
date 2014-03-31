@@ -16,6 +16,10 @@ var UserSchema = new Schema({
   avatar: { type: String },
   githubId: { type: String, index: true },
   githubUsername: {type: String},
+
+  sinaId:{type:String,index:true},
+  sinaUsername:{type:String},
+
   is_block: {type: Boolean, default: false},
 
   score: { type: Number, default: 0 },

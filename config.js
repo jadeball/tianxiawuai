@@ -110,7 +110,25 @@ var config = {
     clientSecret: 'your GITHUB_CLIENT_SECRET',
     callbackURL: 'http://cnodejs.org/auth/github/callback'
   },
-  allow_sign_up: true
+
+    sina : {
+        "client_id" : "1499072991",
+        "app_key" : "1499072991",
+        "app_secret" : "e8fbffb6372149852ee06b549db5b18e",
+        "redirect_uri" : "http://www.tianxiawuai.com:8080/auth/sina/callback"
+    },
+    renren : {
+        "client_id" : "appkey",
+        "app_key" : "appkey",
+        "app_secret" : "appsecret",
+        "redirect_uri" : "http://test.com/renren_auth_cb"
+    },
+    qq : {
+        "client_id" : "appid",
+        "app_key" : "appkey",
+        "redirect_uri" : "http://test.com/qq_auth_cb"
+    },
+    allow_sign_up: true
 };
 
 module.exports = config;
