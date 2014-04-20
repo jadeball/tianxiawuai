@@ -123,7 +123,7 @@
     <div class='header'>
       <span class='col_fade'>添加回复</span>
     </div>
-    <div class='inner reply'>
+    <div class='wmdinner reply'>
       <form id='reply_form' action='/<%= topic._id %>/reply' method='post'>
         <div class='tabbable'>
           <!--<ul class='nav nav-pills'>-->
@@ -135,9 +135,7 @@
               <div id='wmd-button-bar'></div>
               <textarea class='span8 editor' id='wmd-input' name='r_content' rows='8' style="width: 98%"></textarea>
             </div>
-            <div id='preview' class='tab-pane'>
               <div id='wmd-preview' class='wmd-preview reply-wmd-preview'></div>
-            </div>
           </div>
           <input type='hidden' name='_csrf' id="_csrf" value='<%= csrf %>' />
         </div>
