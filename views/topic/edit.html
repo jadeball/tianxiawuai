@@ -55,7 +55,7 @@
         <% } %>
       </ol>
     </div>
-    <div class='inner post'>
+    <div class='wmdinner post'>
       <% if(locals.edit_error){ %>
       <div class="alert alert-error"> 
         <a class="close" data-dismiss="alert" href="#">&times;</a>
@@ -72,17 +72,46 @@
       <% } else { %>
       <form id='create_topic_form' action='/topic/create' method='post'>
       <% } %>
-        <fieldset>
-          <label class='bold' for='title'>标题</label>
-          <textarea class='span9' id='title' name='title' rows='1' placeholder="请在此输入标题，字数控制在10到100个之间"><%= locals.title || '' %></textarea>
-          <label class='bold' for='t_content'>内容</label>
-          <textarea class='editor' id='wmd-input' name='t_content' rows='20'><%= locals.content || '' %></textarea>
+        <!--<fieldset>-->
+          <!--<label class='bold' for='title'>标题</label>-->
+          <!--<textarea class='span9' id='title' name='title' rows='1' placeholder="请在此输入标题，字数控制在10到100个之间"><%= locals.title || '' %></textarea>-->
+          <!--<label class='bold' for='t_content'>内容</label>-->
+          <!--<textarea class='editor' id='wmd-input' name='t_content' rows='20'><%= locals.content || '' %></textarea>-->
 
-          <input type='hidden' id='topic_tags' name='topic_tags' value=''></input>
-          <input type='hidden' name='_csrf' value='<%= csrf %>' />
-          <button id='submit_btn' type="submit" class='btn'>发布</button>
-        </fieldset>
-      </form>
+          <!--<input type='hidden' id='topic_tags' name='topic_tags' value=''></input>-->
+          <!--<input type='hidden' name='_csrf' value='<%= csrf %>' />-->
+          <!--<button id='submit_btn' type="submit" class='btn'>发布</button>-->
+        <!--</fieldset>-->
+      <!--</form>-->
+
+
+              <label for="title">标题</label>
+              <input type="hidden" name="threadid" >
+              <textarea name="title" id="title" style="width:90%;" rows="1" placeholder="请在此输入标题，字数控制在10到100个之间" required ><%= locals.title || '' %></textarea>
+              <label for="content">内容</label>
+              <div id="wmd-editor" class="wmd-panel" style="width:90%;">
+                  <div id="wmd-button-bar"></div>
+                  <textarea id="wmd-input" name="t_content" minlength="5" required><%= locals.content || '' %></textarea>
+              </div>
+              <div id="wmd-preview" class="wmd-panel" style="width:90%;">
+              </div>
+              <input type='hidden' id='topic_tags' name='topic_tags' value='' />
+              <input type='hidden' name='_csrf' value='<%= csrf %>' />
+              <!--<h4>Tag</h4>-->
+              <!--<div class="threadblock" >-->
+                  <!--<div style="width:90%;">-->
+                      <!--<div id="tag_warnning" style='color:red;display:none;'>必须添加两个以上的Tag。</div>-->
+                      <!--<input id="tags" name="tags"-->
+                             <!--required/>-->
+                  <!--</div>-->
+              <!--</div>-->
+              <div class="threadblock" style="text-align:center;">
+                  <p>使用Ctrl+回车键也可以发布新帖</p>
+                  <input type="submit" name="submit" value="发布" id="submit" class="btn btn-primary">
+                  <input type="button" name="cancel" value="取消" id="cancel" class="btn">
+              </div>
+          </form>
+
     </div>
     <% } %>
   </div>  
@@ -92,17 +121,19 @@
 <!-- markdown editor -->
 <%- Loader('/public/topic_edit.min.js')
   .js('/public/libs/ajax-upload/ajaxupload.js')
-  .js('/public/libs/epiceditor/epiceditor.js')
-  .js('/public/javascripts/editor.js')
+  <!--.js('/public/libs/epiceditor/epiceditor.js')-->
+  <!--.js('/public/javascripts/editor.js')-->
+  .js('/public/javascripts/wmd.js')
   .done(assets, config.site_static_host, config.mini_assets)
 %>
+<script src='../public/javascripts/wmd.js'></script>
 <script>
 $(function () {
   $('.tag_selectable').click(function(){
     $(this).toggleClass('tag_select');
   });
 
-  $('#submit_btn').click(function(){
+  $('#submit').click(function(){
     var values=[];
     $('.tag_selectable').each(function(){
       if($(this).hasClass('tag_select')){
@@ -112,5 +143,13 @@ $(function () {
     $('#topic_tags').val(values);
     $('#create_topic_form').submit();
   });
+
+    $("#create_topic_form").validate();
+//    $("#newform").submit();
+
+    $("#wmd-input").bind('keyup.ctrl_return', function(){
+        $("#submit").click();
+    });
+
 });
 </script>

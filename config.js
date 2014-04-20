@@ -124,8 +124,8 @@ var config = {
         "redirect_uri" : "http://test.com/renren_auth_cb"
     },
     qq : {
-        "client_id" : "appid",
-        "app_key" : "appkey",
+        "client_id" : "101045314",
+        "app_key" : "25b46df2c5e64fad6c27f2a55b441881",
         "redirect_uri" : "http://test.com/qq_auth_cb"
     },
     allow_sign_up: true

@@ -126,14 +126,14 @@
     <div class='inner reply'>
       <form id='reply_form' action='/<%= topic._id %>/reply' method='post'>
         <div class='tabbable'>
-          <ul class='nav nav-pills'>
-            <li class='active'><a href='#markdown' data-toggle='pill'>markdown</a></li>
-            <!-- <li><a href='#preview' data-toggle='pill' class="preview-btn">预览</a></li> -->
-          </ul>
+          <!--<ul class='nav nav-pills'>-->
+            <!--<li class='active'><a href='#markdown' data-toggle='pill'>markdown</a></li>-->
+            <!--&lt;!&ndash; <li><a href='#preview' data-toggle='pill' class="preview-btn">预览</a></li> &ndash;&gt;-->
+          <!--</ul>-->
           <div class='tab-content'>
             <div class='tab-pane active' id='markdown'>
               <div id='wmd-button-bar'></div>
-              <textarea class='span8 editor' id='wmd-input' name='r_content' rows='8'></textarea>
+              <textarea class='span8 editor' id='wmd-input' name='r_content' rows='8' style="width: 98%"></textarea>
             </div>
             <div id='preview' class='tab-pane'>
               <div id='wmd-preview' class='wmd-preview reply-wmd-preview'></div>
@@ -155,8 +155,9 @@
 <!-- markdown editor -->
 <%- Loader('/public/topic_edit.min.js')
   .js('/public/libs/ajax-upload/ajaxupload.js')
-  .js('/public/libs/epiceditor/epiceditor.js')
-  .js('/public/javascripts/editor.js')
+  <!--.js('/public/libs/epiceditor/epiceditor.js')-->
+  <!--.js('/public/javascripts/editor.js')-->
+  .js('/public/javascripts/wmd.js')
   .done(assets, config.site_static_host, config.mini_assets)
 %>
 <script>
@@ -269,20 +270,24 @@
         }
       });
     });
+
+      $("#wmd-input").bind('keyup.ctrl_return', function(){
+          $("#submit_btn").click();
+      });
     
-    document.onkeyup=function(event) {
-      if(window.ActiveXObject) {
-        var keydown = window.event.keyCode;
-        event=window.event;
-      }else{
-        var keydown = event.keyCode;
-        if(event.ctrlKey == true && keydown == 13){
-          if(submit_btn){
-            submit_btn.click();
-          }
-        }
-      }
-    };
+//    document.onkeyup=function(event) {
+//      if(window.ActiveXObject) {
+//        var keydown = window.event.keyCode;
+//        event=window.event;
+//      }else{
+//        var keydown = event.keyCode;
+//        if(event.ctrlKey == true && keydown == 13){
+//          if(submit_btn){
+//            submit_btn.click();
+//          }
+//        }
+//      }
+//    };
   });
 </script>
 <% } %>
