@@ -139,17 +139,17 @@ exports.qqcallback = function (req, res, next) {
     qq.oauth.accesstoken(req.query.code , function (error, token){//{access_token:YOUR_ACCESS_TOKEN, expires_in:7776000}
         if(error){
             console.log(error);
-            res.render('ok', {
-                result: 'ERROR'
-            });
+//            res.render('ok', {
+//                result: 'ERROR'
+//            });
         }
         else{
             var access_token = querystring.parse(token)['access_token'];
             qq.oauth.openid(access_token, function(err, data){//{"client_id":"YOUR_APPID","openid":"YOUR_OPENID"}
                 if(err){
-                    res.render('ok', {
-                        result: 'ERROR'
-                    });
+//                    res.render('ok', {
+//                        result: 'ERROR'
+//                    });
                 }
                 else{
                     qq.user.get_user_info({
