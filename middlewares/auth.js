@@ -1,6 +1,7 @@
 var sign = require('../controllers/sign');
 var config = require('../config');
 var Sina = require('../controllers/sina');
+var QQ = require('../controllers/qq');
 var Models = require('../models');
 var User = Models.User;
 
@@ -130,6 +131,48 @@ exports.sinacallback = function (req, res, next) {
 //                result: 'ERROR'
 //            });
         }
+    });
+}
+
+exports.qqcallback = function (req, res, next) {
+    var qq = new QQ(config.sina);
+    qq.oauth.accesstoken(req.query.code , function (error, token){//{access_token:YOUR_ACCESS_TOKEN, expires_in:7776000}
+        if(error){
+            console.log(error);
+            res.render('ok', {
+                result: 'ERROR'
+            });
+        }
+        else{
+            var access_token = querystring.parse(token)['access_token'];
+            qq.oauth.openid(access_token, function(err, data){//{"client_id":"YOUR_APPID","openid":"YOUR_OPENID"}
+                if(err){
+                    res.render('ok', {
+                        result: 'ERROR'
+                    });
+                }
+                else{
+                    qq.user.get_user_info({
+                        openid: data.openid,
+                        access_token: access_token,
+                        oauth_consumer_key: config.qq.client_id,
+                        method: "GET"
+                    }, function(error, data){
+                        if(error){
+                            res.render('ok', {
+                                result: 'ERROR'
+                            });
+                        }
+                        else {
+                            res.render('ok', {
+                                result: JSON.stringify(data)
+                            });
+                        }
+                    });
+                }
+            });
+        }
+
     });
 }
 

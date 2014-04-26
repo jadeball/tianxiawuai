@@ -44,8 +44,8 @@ var UserSchema = new Schema({
 });
 
 UserSchema.virtual('avatar_url').get(function () {
-  var url = this.profile_image_url || this.avatar || config.site_static_host + '/public/images/user_icon&48.png';
-  return url.replace('http://www.gravatar.com/', 'http://cnodegravatar.u.qiniudn.com/');
+  var url = this.profile_image_url || this.avatar || config.site_static_host + '/public/images/logo.png';
+  return url.replace('http://www.gravatar.com/', 'http://www.tianxiawuai.com/');
 });
 
 mongoose.model('User', UserSchema);

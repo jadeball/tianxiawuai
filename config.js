@@ -115,7 +115,7 @@ var config = {
         "client_id" : "1499072991",
         "app_key" : "1499072991",
         "app_secret" : "e8fbffb6372149852ee06b549db5b18e",
-        "redirect_uri" : "http://www.tianxiawuai.com:8080/auth/sina/callback"
+        "redirect_uri" : "http://www.tianxiawuai.com/auth/sina/callback"
     },
     renren : {
         "client_id" : "appkey",
@@ -126,7 +126,7 @@ var config = {
     qq : {
         "client_id" : "101045314",
         "app_key" : "25b46df2c5e64fad6c27f2a55b441881",
-        "redirect_uri" : "http://test.com/qq_auth_cb"
+        "redirect_uri" : "http://www.tianxiawuai.com/auth/qq/callback"
     },
     allow_sign_up: true
 };
