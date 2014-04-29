@@ -1,3 +1,6 @@
+//端口 8080->80
+//sudo ipfw add 100 fwd 127.0.0.1,8080 tcp from any to any 80 in
+
 find / -name mongodb
 
 /work/jade/db

@@ -20,6 +20,9 @@ var UserSchema = new Schema({
   sinaId:{type:String,index:true},
   sinaUsername:{type:String},
 
+  qqId:{type:String,index:true},
+  qqUserName:{type:String},
+
   is_block: {type: Boolean, default: false},
 
   score: { type: Number, default: 0 },

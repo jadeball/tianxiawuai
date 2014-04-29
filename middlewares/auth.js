@@ -1,4 +1,5 @@
 var sign = require('../controllers/sign');
+var querystring = require('querystring');
 var config = require('../config');
 var Sina = require('../controllers/sina');
 var QQ = require('../controllers/qq');
@@ -135,7 +136,8 @@ exports.sinacallback = function (req, res, next) {
 }
 
 exports.qqcallback = function (req, res, next) {
-    var qq = new QQ(config.sina);
+    var qq = new QQ(config.qq);
+    var _openid = "";
     qq.oauth.accesstoken(req.query.code , function (error, token){//{access_token:YOUR_ACCESS_TOKEN, expires_in:7776000}
         if(error){
             console.log(error);
@@ -152,6 +154,7 @@ exports.qqcallback = function (req, res, next) {
 //                    });
                 }
                 else{
+                    _openid = data.openid;
                     qq.user.get_user_info({
                         openid: data.openid,
                         access_token: access_token,
@@ -159,14 +162,66 @@ exports.qqcallback = function (req, res, next) {
                         method: "GET"
                     }, function(error, data){
                         if(error){
-                            res.render('ok', {
-                                result: 'ERROR'
-                            });
+//                            res.render('ok', {
+//                                result: 'ERROR'
+//                            });
                         }
                         else {
-                            res.render('ok', {
-                                result: JSON.stringify(data)
-                            });
+                            data.id = _openid;
+
+                            User.findOne({qqId: data.id}, function (err, user) {
+                                if (err) {
+                                    return next(err);
+                                }
+                                if (user) {
+                                    user.name = data.nickname;
+                                    user.qqUsername = data.nickname;
+                                    user.loginname = data.nickname;
+                                    user.email = data.id+"@qq.com";
+                                    user.avatar = data.figureurl_qq_1;
+                                    user.save(function (err) {
+                                        if (err) {
+                                            return next(err);
+                                        }
+                                        sign.gen_session(user, res);
+                                        return res.redirect('/');
+                                    });
+                                } else {
+                                    //req.session.profile = profile; 创建一个
+                                    //return res.redirect('/auth/sina/new');
+
+                                    var user = new User({
+                                        name: data.nickname,
+                                        loginname: data.nickname,
+                                        pass: data.id,
+                                        email: data.id+"@qq.com",
+                                        avatar: data.figureurl_qq_1,
+                                        qqId: data.id,
+                                        qqUsername: data.nickname
+                                    });
+                                    user.save(function (err) {
+                                        if (err) {
+                                            if (err.err.indexOf('duplicate key error') !== -1) {
+                                                if (err.err.indexOf('users.$email') !== -1) {
+                                                    return res.status(500)
+                                                        .send('您 QQ 账号的 Email 与之前在 天下无癌 注册的 Email 重复了，也可能是您的 QQ 没有提供公开的 Email 导致注册失败。');
+                                                }
+                                                if (err.err.indexOf('users.$loginname') !== -1) {
+                                                    return res.status(500)
+                                                        .send('您 QQ 账号的用户名与之前在 天下无癌 注册的用户名重复了');
+                                                }
+                                            }
+                                            return next(err);
+                                        }
+                                        sign.gen_session(user, res);
+                                        res.redirect('/');
+                                    });
+
+
+
+
+                                }
+                            })
                         }
                     });
                 }
